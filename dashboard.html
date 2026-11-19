@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AEVA Nexus – Institutional Growth Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F7FA;--card:#fff;--line:#E3E8EF;--ink:#0B1220;--mut:#5B667A;--navy:#0B1220;--slate:#172033;--em:#10B981;--ind:#6366F1;--cy:#22D3EE;--sel:#EEF2FF;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0B1220;--card:#172033;--line:#27324A;--ink:#EAF0FA;--mut:#9AA6BD;--sel:#222B4A}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0B1220;--card:#172033;--line:#27324A;--ink:#EAF0FA;--mut:#9AA6BD;--sel:#222B4A}
+*{box-sizing:border-box}html,body{margin:0}body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px}
+.app{display:flex;min-height:100vh}
+nav{width:220px;background:var(--navy);color:#C9D3E6;padding:18px 12px;flex-shrink:0}
+nav h1{font-size:17px;color:#fff;margin:0 8px 2px}nav small{display:block;margin:0 8px 18px;color:#7F8CA6}
+nav button{display:block;width:100%;text-align:left;background:none;border:0;color:inherit;padding:10px;border-radius:8px;font:inherit;cursor:pointer}
+nav button:hover{background:#172033}nav button.on{background:var(--ind);color:#fff}
+main{flex:1;min-width:0;padding:22px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+h2{margin:0;font:400 34px 'Instrument Serif',Georgia,serif;letter-spacing:-.01em}nav h1{font:400 24px 'Instrument Serif',Georgia,serif}.card:hover{border-color:var(--ind);transition:border-color .2s}.kpi b{font:400 36px 'Instrument Serif',Georgia,serif}.sub{color:var(--mut);margin:2px 0 16px}
+.banner{background:var(--sel);border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:12px;color:var(--mut);margin-bottom:16px}
+.grid{display:grid;gap:12px}.k6{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}.c2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+.kpi b{font-size:26px;display:block}.kpi span{color:var(--mut);font-size:12px}.kpi i{font-style:normal;color:var(--em);font-size:12px;font-weight:600}
+h3{margin:0 0 10px;font-size:15px}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}.bar div{height:100%;background:var(--em);transition:width .6s}
+.row{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}.row:first-of-type{border-top:0}
+.tag{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--sel);color:var(--ind);font-weight:600;white-space:nowrap}
+button.b{background:var(--ind);color:#fff;border:0;border-radius:8px;padding:8px 12px;font:inherit;font-weight:600;cursor:pointer}
+button.g{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}
+.scr{display:none}.scr.on{display:block;animation:in .25s}@keyframes in{from{opacity:0;transform:translateY(6px)}}
+.pill{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}.pill button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:16px;padding:5px 12px;font:inherit;cursor:pointer}.pill button.on{background:var(--ink);color:var(--bg)}
+.tl{display:grid;grid-template-columns:repeat(4,minmax(180px,1fr));gap:10px;overflow-x:auto;padding-bottom:6px}
+.ms{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ind);border-radius:8px;padding:10px;cursor:pointer;margin-bottom:8px}.ms.done{border-left-color:var(--em)}
+.svgw{overflow-x:auto}svg text{fill:var(--ink);font-family:Inter,sans-serif}
+.node{cursor:pointer}.node:hover circle{stroke-width:4}
+.seats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.seat{border:1px dashed var(--line);border-radius:8px;padding:6px 8px;margin-top:6px;min-height:32px;cursor:pointer}.seat.f{border-style:solid;background:var(--sel)}
+.gl{padding:6px 10px;border:1px solid var(--line);border-radius:16px;cursor:pointer;display:inline-block;margin:3px;background:var(--card)}.gl.sel{background:var(--ind);color:#fff}
+#toast{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:8px;opacity:0;transition:.3s;pointer-events:none}
+.kb{display:grid;grid-template-columns:repeat(6,minmax(170px,1fr));gap:10px;overflow-x:auto}.kc{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px;min-height:140px}.msg{padding:10px 12px;border-radius:10px;margin-bottom:8px;white-space:pre-wrap;max-width:88%}.msg.u{background:var(--ind);color:#fff;margin-left:auto}.msg.a{background:var(--sel)}.dots span{display:inline-block;width:6px;height:6px;margin-right:3px;border-radius:50%;background:var(--mut);animation:bl 1s infinite}.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}@keyframes bl{50%{opacity:.2}}
+nav .grp{font-size:11px;color:#6E7B97;margin:16px 10px 4px;letter-spacing:.04em}nav button{display:flex;align-items:center;transition:background .15s}nav button.on{box-shadow:0 2px 10px rgba(99,102,241,.4)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.ms:focus-visible,.seat:focus-visible,.nd:focus-visible{outline:2px solid var(--cy);outline-offset:2px}
+.card{border-radius:14px;box-shadow:0 1px 3px rgba(11,18,32,.06)}.kpi{border-top:3px solid var(--ind)}.kpi:nth-child(2n){border-top-color:var(--em)}.kpi:nth-child(3n){border-top-color:var(--cy)}
+.pr:hover{background:var(--sel)}.ms{transition:transform .15s,box-shadow .15s}.ms:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(11,18,32,.12)}button.b:hover{filter:brightness(1.1)}button.g:hover{border-color:var(--ind)}
+#bar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}#crumb{color:var(--mut);font-size:13px}.qa{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+@media(max-width:760px){nav .grp{display:none}#bar .tag{display:none}}
+@media(max-width:760px){.app{flex-direction:column}nav{width:100%;display:flex;overflow-x:auto;gap:4px;padding:10px}nav h1,nav small{display:none}nav button{white-space:nowrap;width:auto}main{padding:14px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div class="app">
+<nav><h1 style="display:flex;align-items:center;gap:9px"><svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="#172033"/><path d="M20 9 L9 31 M20 9 L31 31 M14 24 H26" stroke="#8B93FF" stroke-width="2.6" stroke-linecap="round" fill="none"/><circle cx="20" cy="9" r="4" fill="#10B981"/><circle cx="9" cy="31" r="3.4" fill="#22D3EE"/><circle cx="31" cy="31" r="3.4" fill="#22D3EE"/><circle cx="20" cy="24" r="2.4" fill="#fff"/></svg>AEVA Nexus</h1><small>Concept for AEVA Strategy</small>
+<button class="on" data-s="ov">Executive Overview</button><button data-s="rd">Institutional Readiness</button><button data-s="gtm">GTM Roadmap</button><button data-s="eco">Ecosystem Intelligence</button><button data-s="ev">Private Events &amp; Dinners</button><button data-s="op">Opportunity Pipeline</button><button data-s="ai">AI Strategy Assistant</button><button data-s="pf">Company Portfolio</button><button data-s="rp">Reports</button><a href="index.html" style="display:block;padding:10px;margin-top:14px;color:#7F8CA6;text-decoration:none;font-size:13px">← Back to website</a></nav>
+<main>
+<div id="bar"><span id="crumb"></span><div style="display:flex;gap:8px;align-items:center"><button class="g" id="bs" title="Search (Ctrl K)">Search</button><button class="g" id="bt" title="Switch light or dark">Light / dark</button><span class="tag" style="padding:6px 10px">Jessica · Principal Advisor</span></div></div>
+<div class="banner">Concept prototype. All companies, scores and relationships are fictional demo data, not real partnerships, research or integrations.</div>
+
+<section class="scr on" id="ov">
+<div class="top"><div><h2>Good morning, Jessica</h2><p class="sub">Your institutional growth overview.</p></div><select class="g" id="per"><option>Last 30 days</option><option>Last quarter</option></select></div>
+<div class="qa" id="qa"></div><div class="grid k6" id="kpis"></div>
+<div class="grid c2" style="margin-top:12px">
+<div class="card"><h3>Institutional readiness by company</h3><div id="rbars"></div></div>
+<div class="card"><h3>Partnership pipeline</h3><div id="funnel"></div></div></div>
+<div class="card" style="margin-top:12px;border-left:4px solid var(--em)"><h3>Executive insights</h3><div class="row"><span>ChainVault is above 85 and ready for asset manager demos.</span><span class="tag">Opportunity</span></div><div class="row"><span>AI Nexus is below 65 on governance. Hold institutional outreach until evidence is ready.</span><span class="tag">Risk</span></div><div class="row"><span>Three dinner RSVPs are pending. Follow up before December 1.</span><span class="tag">Action</span></div></div>
+<h3 style="margin:16px 0 8px">Portfolio snapshot</h3><div class="grid c2" id="cos"></div>
+<div class="grid c2" style="margin-top:12px">
+<div class="card"><h3>Upcoming events</h3><div id="evl"></div></div>
+<div class="card"><h3>Recent activity</h3><div id="act"></div></div></div>
+</section>
+
+<section class="scr" id="rd">
+<h2>Institutional Readiness</h2><p class="sub">Advisory assessment. Scores are illustrative and configurable, not a compliance or suitability rating.</p>
+<div class="pill" id="rdco"></div>
+<div class="grid c2"><div class="card" style="text-align:center"><svg id="ring" width="180" height="180" viewBox="0 0 180 180"></svg><h3 id="lvl"></h3><span class="sub" id="lvlsub"></span></div>
+<div class="card"><h3>Category scores (click to adjust)</h3><div id="cats"></div></div></div>
+<div class="card" style="margin-top:12px"><h3>Action plan</h3><div id="acts"></div>
+<div style="display:flex;gap:6px;margin-top:10px"><input id="newact" placeholder="New improvement task" style="flex:1;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)"><button class="b" id="addact">Add task</button></div></div>
+</section>
+
+<section class="scr" id="gtm">
+<h2>GTM Strategy &amp; Roadmap</h2><p class="sub">TokenBridge – institutional go-to-market. Click a milestone to update its status.</p>
+<div class="card" style="margin-bottom:12px"><h3>Overall progress <span id="gp"></span></h3><div class="bar"><div id="gbar"></div></div></div>
+<div class="tl" id="tl"></div>
+</section>
+
+<section class="scr" id="eco">
+<h2>Ecosystem Intelligence</h2><p class="sub">TokenBridge at the centre. Select a node, or filter by relationship type. Relationships are simulated.</p>
+<div class="pill" id="ef"></div>
+<div class="grid c2" style="grid-template-columns:2fr 1fr"><div class="card svgw"><svg id="map" viewBox="0 0 640 440" width="100%" style="min-width:520px"></svg></div>
+<div class="card" id="prof"><h3>Select an organization</h3><p class="sub">Tap a node to see its profile and strategic fit.</p></div></div>
+<div class="card" style="margin-top:12px;border-left:4px solid var(--em)"><h3>Warm introduction finder</h3><p class="sub" style="margin-top:0">Pick who you want to reach. Nexus finds the warmest route through your simulated relationships.</p><div style="display:flex;gap:8px;flex-wrap:wrap"><select id="fp" style="padding:9px;border-radius:8px"></select><button class="b" id="fb">Find warmest path</button></div><div id="fo" style="margin-top:12px"></div></div>
+</section>
+
+<section class="scr" id="ev">
+<h2>Private Events &amp; Dinners</h2><p class="sub">Institutional Digital Assets Dinner · 12 guests · 2 tables. Pick a guest, then tap a seat.</p>
+<div class="grid k6" id="evk"></div>
+<div class="card" style="margin:12px 0"><h3>Guests</h3><div id="gl"></div></div>
+<div class="seats" id="seats"></div>
+</section>
+<section class="scr" id="op"><h2>Opportunity Pipeline</h2><p class="sub">Advisory relationship opportunities, not investment recommendations. Tap a card to move it forward a stage.</p><div class="kb" id="kb"></div></section>
+<section class="scr" id="ai"><h2>AI Strategy Assistant</h2><p class="sub">Answers come from Claude, grounded in the fictional demo workspace. If AI access is declined, demo responses are used. Advisory only, not investment, legal or compliance advice.</p><div class="pill" id="sp"></div><div class="card" id="chat" style="min-height:240px"><span class="sub">Pick a suggested prompt or ask your own question.</span></div><div style="display:flex;gap:6px;margin-top:10px"><input id="ci" placeholder="Ask about strategy, partners or events" style="flex:1;padding:9px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)"><button class="b" id="cs">Send</button></div></section>
+<section class="scr" id="pf"><div class="top"><div><h2>Company Portfolio</h2><p class="sub">Search, filter and open any company. Fictional records.</p></div><button class="b" id="addco">Add company</button></div>
+<div class="card" id="af" style="display:none;margin-bottom:12px"><h3>New company</h3><div style="display:flex;gap:8px;flex-wrap:wrap"><input id="an" placeholder="Company name" style="padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)"><select id="an2" style="padding:8px;border-radius:8px"></select><button class="b" id="as">Save company</button></div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><input id="pq" placeholder="Search companies" style="padding:9px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)"><select id="pi" style="padding:9px;border-radius:8px"></select></div>
+<div class="card" style="padding:0;overflow-x:auto"><table id="pt" style="width:100%;border-collapse:collapse;font-size:13px"></table></div><div class="card" id="pd" style="margin-top:12px;display:none"></div></section>
+<section class="scr" id="rp"><h2>Reports</h2><p class="sub">Build a consulting-style report from workspace data, then download it.</p><div class="grid c2"><div class="card"><h3>Report builder</h3><label>Company<br><select id="rc" style="width:100%;padding:8px;margin:4px 0 10px"></select></label><label>Report type<br><select id="rt" style="width:100%;padding:8px;margin:4px 0 10px"></select></label><label><input type="checkbox" id="m1" checked> Readiness</label> <label><input type="checkbox" id="m2" checked> GTM progress</label> <label><input type="checkbox" id="m3" checked> Partnerships</label><textarea id="rn" placeholder="Advisor notes" style="width:100%;height:70px;margin:10px 0;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)"></textarea><button class="b" id="rg2">Generate report</button></div><div class="card" id="rv"></div></div></section>
+<div id="pal" style="display:none;position:fixed;inset:0;background:rgba(5,10,20,.6);z-index:20;align-items:flex-start;justify-content:center;padding-top:12vh"><div class="card" style="width:min(520px,92vw)"><input id="pq2" placeholder="Jump to a module or company" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);margin-bottom:6px"><div id="pl"></div></div></div>
+<div id="tour" class="card" style="display:none;position:fixed;bottom:70px;left:50%;transform:translateX(-50%);width:min(420px,92vw);z-index:15;box-shadow:0 10px 30px rgba(0,0,0,.3)"></div>
+</main></div><div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+function toast(t){const e=$('#toast');e.textContent=t;e.style.opacity=1;setTimeout(()=>e.style.opacity=0,1800)}
+$$('nav button').forEach(b=>b.onclick=()=>{$$('nav button').forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('.scr').forEach(s=>s.classList.toggle('on',s.id===b.dataset.s))});
+/* Overview */
+const K=[['Portfolio companies',18,'+2'],['Institutional opportunities',42,'+9'],['Active partnerships',26,'+4'],['In GTM execution',12,'+1'],['Upcoming investor events',4,'+1'],['Avg readiness',76,'+3%']];
+$('#kpis').innerHTML=K.map(k=>`<div class="card kpi"><span>${k[0]}</span><b data-n="${k[1]}">0</b><i>▲ ${k[2]}</i><svg width="100%" height="22" viewBox="0 0 60 22" preserveAspectRatio="none"><polyline fill="none" stroke="var(--ind)" stroke-width="2" points="${[0,1,2,3,4,5].map(j=>j*12+','+(20-((k[1]*(j+3))%11+j*2))).join(' ')}"/></svg></div>`).join('');
+$$('[data-n]').forEach(e=>{const n=+e.dataset.n;let i=0;const t=setInterval(()=>{i+=Math.max(1,n/25);if(i>=n){i=n;clearInterval(t)}e.textContent=Math.round(i)+(n==76?'%':'')},30)});
+const C=[['TokenBridge','Asset Tokenization','Growth',82,'Pilot validation',7,'Bank pilot scoping'],['StableCore','Stablecoin Infrastructure','Scale-up',74,'Partner development',5,'Custodian intro'],['ChainVault','Digital Asset Custody','Growth',88,'Market expansion',9,'Asset manager demo'],['AI Nexus','Enterprise AI','Early',61,'Target accounts',3,'ICP workshop'],['Meridian Protocol','Blockchain Infrastructure','Growth',70,'Stakeholder engagement',4,'Network partner call']];
+$('#rbars').innerHTML=C.map(c=>`<div style="margin-bottom:10px"><div class="row" style="border:0;padding:0 0 4px"><span>${c[0]}</span><b>${c[3]}</b></div><div class="bar"><div style="width:${c[3]}%"></div></div></div>`).join('');
+$('#funnel').innerHTML=[['Identified',64],['Intro requested',48],['Discovery',33],['Discussion',26],['Active',14]].map((f,i)=>`<div style="margin-bottom:6px"><div style="background:var(--ind);opacity:${1-i*.15};width:${f[1]/64*100}%;color:#fff;padding:5px 8px;border-radius:6px;font-size:12px;transition:width .6s">${f[0]} · ${f[1]}</div></div>`).join('');
+$('#cos').innerHTML=C.map(c=>`<div class="card"><div class="row" style="border:0;padding:0"><b>${c[0]}</b><span class="tag">${c[2]}</span></div><div class="sub" style="margin:2px 0 8px">${c[1]}</div><div class="bar"><div style="width:${c[3]}%"></div></div><div class="row" style="border:0"><span>Readiness ${c[3]}</span><span>${c[5]} opportunities</span></div><div style="font-size:12px;color:var(--mut)">Phase: ${c[4]}<br>Next: ${c[6]}</div></div>`).join('');
+$('#evl').innerHTML=[['Institutional Digital Assets Dinner','Dec 4'],['Tokenization & Capital Markets Roundtable','Dec 11'],['Web3 Founders Private Gathering','Jan 15'],['Institutional AI & Blockchain Forum','Feb 5']].map(e=>`<div class="row"><span>${e[0]}</span><span class="tag">${e[1]}</span></div>`).join('');
+$('#act').innerHTML=['New partnership opportunity added','Readiness assessment updated','Investor dinner invitation sent','GTM milestone completed','New strategic partner introduced'].map((a,i)=>`<div class="row"><span>${a}</span><span class="sub" style="margin:0">${i+1}h ago</span></div>`).join('');
+/* Readiness */
+const CAT=['Product maturity','Technology architecture','Security & infrastructure','Governance & operations','Institutional positioning','Business model','Market validation','Commercial readiness','Partnerships & ecosystem','Compliance coordination'];
+const S={TokenBridge:[88,84,76,70,82,85,78,80,86,72],StableCore:[80,78,82,68,70,75,72,70,74,66],ChainVault:[92,90,95,84,86,88,84,86,88,80],'AI Nexus':[70,66,58,50,62,64,56,58,60,52],'Meridian Protocol':[78,80,72,64,66,70,68,66,74,60]};
+let cur='TokenBridge';const A=[['Complete custody review','Priya N.','High'],['Draft institutional one-pager','Jessica','Medium']];
+function lvl(s){return s<40?['Early Stage','0–39']:s<60?['Developing','40–59']:s<80?['Advancing','60–79']:['Institutional Preparation','80–100']}
+function drawR(){const v=S[cur],avg=Math.round(v.reduce((a,b)=>a+b)/v.length),r=76,c=2*Math.PI*r,L=lvl(avg);
+$('#ring').innerHTML=`<circle cx="90" cy="90" r="${r}" fill="none" stroke="var(--line)" stroke-width="12"/><circle cx="90" cy="90" r="${r}" fill="none" stroke="var(--em)" stroke-width="12" stroke-linecap="round" stroke-dasharray="${c*avg/100} ${c}" transform="rotate(-90 90 90)" style="transition:stroke-dasharray .6s"/><text x="90" y="98" text-anchor="middle" font-size="34" font-weight="700">${avg}</text>`;
+$('#lvl').textContent=L[0];$('#lvlsub').textContent='Band '+L[1];
+const mn=Math.min(...v),mx=Math.max(...v);
+$('#cats').innerHTML=CAT.map((n,i)=>`<div style="margin-bottom:8px;cursor:pointer" data-i="${i}"><div class="row" style="border:0;padding:0 0 3px"><span>${n} ${v[i]==mx?'<span class="tag">strongest</span>':v[i]==mn?'<span class="tag" style="color:#B45309">gap</span>':''}</span><b>${v[i]}</b></div><div class="bar"><div style="width:${v[i]}%;background:${v[i]<60?'#F59E0B':'var(--em)'}"></div></div></div>`).join('');
+$$('#cats [data-i]').forEach(e=>e.onclick=()=>{const i=+e.dataset.i;S[cur][i]=Math.min(100,S[cur][i]+5);drawR();toast(CAT[i]+' updated')})}
+$('#rdco').innerHTML=Object.keys(S).map(n=>`<button class="${n==cur?'on':''}">${n}</button>`).join('');
+$$('#rdco button').forEach(b=>b.onclick=()=>{cur=b.textContent;$$('#rdco button').forEach(x=>x.classList.toggle('on',x===b));drawR()});
+function drawA(){$('#acts').innerHTML=A.map(a=>`<div class="row"><span>${a[0]}</span><span><span class="tag">${a[1]}</span> <span class="tag">${a[2]}</span></span></div>`).join('')}
+$('#addact').onclick=()=>{const v=$('#newact').value.trim();if(!v)return;A.push([v,'Unassigned','Medium']);$('#newact').value='';drawA();toast('Task added')};
+drawR();drawA();
+/* GTM */
+const ST=[['Market positioning','Q1',['Define institutional value proposition','Position vs. rival platforms']],['Institutional research','Q1',['Map bank tokenization teams','Interview 5 asset managers']],['Target accounts','Q2',['Shortlist 12 target accounts','Build buyer personas']],['Stakeholder engagement','Q2',['Secure 6 discovery meetings','Run founder-to-CIO dinner']],['Partnership development','Q3',['Custody partner term sheet','Network integration plan']],['Pilot validation','Q3',['Scope bank pilot','Agree success metrics']],['Commercial validation','Q4',['Convert pilot to contract']],['Market expansion','Q4',['Open EU institutional channel']]];
+const D=ST.map((s,i)=>s[2].map((_,j)=>i<2));
+function drawG(){let t=0,d=0;$('#tl').innerHTML=ST.map((s,i)=>`<div><b>${s[0]}</b> <span class="tag">${s[1]}</span><div style="margin-top:8px">${s[2].map((m,j)=>{t++;if(D[i][j])d++;return`<div class="ms ${D[i][j]?'done':''}" data-i="${i}" data-j="${j}">${m}<div style="font-size:11px;color:var(--mut);margin-top:3px">${D[i][j]?'Complete':'In progress'}</div></div>`}).join('')}</div>`).join('');
+const p=Math.round(d/t*100);$('#gp').textContent='· '+p+'%';$('#gbar').style.width=p+'%';
+$$('.ms').forEach(e=>e.onclick=()=>{D[e.dataset.i][e.dataset.j]=!D[e.dataset.i][e.dataset.j];drawG()})}
+drawG();
+/* Ecosystem */
+const N=[['Atlas Bank','Banks','p','Exploring tokenized deposits; Zurich',150,60],['Northgate Asset Mgmt','Asset managers','i','Tokenized fund pilot interest; London',320,40],['Keystone Custody','Custodians','t','Regulated custody; Singapore',500,80],['Solace Stablecoin','Stablecoins','t','Reserve-backed issuer; Dubai',560,200],['Helix Network','Networks','t','Permissioned L1; Toronto',510,330],['Ardent Family Office','Investors','i','Early institutional backer; Geneva',320,400],['Fulcrum Payments','Payments','p','Cross-border rails; New York',120,330],['Meridian Protocol','Web3 companies','t','Shared infrastructure ties; Berlin',70,200]];
+const COL={p:'var(--ind)',i:'var(--cy)',t:'var(--em)'};let ef='All';
+function drawE(){const cx=320,cy=215;let h='';
+N.forEach(n=>{const on=ef=='All'||n[1]==ef;h+=`<line x1="${cx}" y1="${cy}" x2="${n[4]}" y2="${n[5]}" stroke="var(--mut)" stroke-width="1.5" stroke-dasharray="5 4" opacity="${on?.7:.15}"><animate attributeName="stroke-dashoffset" from="18" to="0" dur="1.5s" repeatCount="indefinite"/></line>`});
+h+=`<circle cx="${cx}" cy="${cy}" r="42" fill="var(--navy)"/><text x="${cx}" y="${cy+4}" text-anchor="middle" fill="#fff" style="fill:#fff" font-weight="700" font-size="13">TokenBridge</text>`;
+N.forEach((n,i)=>{const on=ef=='All'||n[1]==ef;h+=`<g class="node" data-i="${i}" opacity="${on?1:.25}"><circle cx="${n[4]}" cy="${n[5]}" r="28" fill="var(--card)" stroke="${COL[n[2]]}" stroke-width="3"/><text x="${n[4]}" y="${n[5]+46}" text-anchor="middle" font-size="12">${n[0]}</text><text x="${n[4]}" y="${n[5]+4}" text-anchor="middle" font-size="11" font-weight="700">${n[0].split(' ').map(w=>w[0]).join('').slice(0,2)}</text></g>`});
+$('#map').innerHTML=h;
+$$('.node').forEach(g=>g.onclick=()=>{const n=N[g.dataset.i];$('#prof').innerHTML=`<h3>${n[0]}</h3><span class="tag">${n[1]}</span><p>${n[3]}</p><p class="sub">Strategic fit: ${n[2]=='p'?'Potential pilot partner':n[2]=='i'?'Capital and introductions':'Infrastructure integration'}. Simulated relationship.</p><button class="b" id="intro">Request introduction</button>`;$('#intro').onclick=()=>toast('Introduction to '+n[0]+' queued')})}
+$('#ef').innerHTML=['All','Banks','Asset managers','Custodians','Stablecoins','Networks','Investors','Payments'].map(f=>`<button class="${f=='All'?'on':''}">${f}</button>`).join('');
+$$('#ef button').forEach(b=>b.onclick=()=>{ef=b.textContent;$$('#ef button').forEach(x=>x.classList.toggle('on',x===b));drawE()});
+drawE();
+/* Events */
+const G=[['Marta Keller','Atlas Bank','Confirmed'],['James Osei','Northgate Asset Mgmt','Confirmed'],['Lena Fischer','Keystone Custody','Confirmed'],['Omar Haddad','Solace Stablecoin','Pending'],['Rina Das','Helix Network','Confirmed'],['Paul Reyes','Ardent Family Office','Confirmed'],['Sofia Lund','Fulcrum Payments','Pending'],['Daniel Wu','Atlas Bank','Confirmed'],['Aiko Mori','Northgate Asset Mgmt','Confirmed'],['Chris Boyd','Keystone Custody','Pending'],['Nadia Khan','Helix Network','Confirmed'],['Tom Berg','Ardent Family Office','Confirmed']];
+const T=[Array(6).fill(null),Array(6).fill(null)];T[0][0]=0;T[0][1]=1;let pick=null;
+function drawV(){const conf=G.filter(g=>g[2]=='Confirmed').length;
+$('#evk').innerHTML=[['Invitations',G.length],['Confirmed',conf],['Pending RSVPs',G.length-conf],['Organizations',new Set(G.map(g=>g[1])).size]].map(k=>`<div class="card kpi"><span>${k[0]}</span><b>${k[1]}</b></div>`).join('');
+const seated=T.flat();
+$('#gl').innerHTML=G.map((g,i)=>`<span class="gl ${pick===i?'sel':''}" style="${seated.includes(i)?'opacity:.4':''}" data-i="${i}">${g[0]} · ${g[1]}</span>`).join('');
+$$('#gl .gl').forEach(e=>e.onclick=()=>{pick=+e.dataset.i;drawV()});
+$('#seats').innerHTML=T.map((t,ti)=>`<div class="card"><b>Table ${ti+1}</b>${t.map((s,si)=>`<div class="seat ${s!==null?'f':''}" data-t="${ti}" data-s="${si}">${s!==null?G[s][0]+' <span class="sub" style="margin:0">'+G[s][1]+'</span>':'Empty seat'}</div>`).join('')}</div>`).join('');
+$$('.seat').forEach(e=>e.onclick=()=>{const t=+e.dataset.t,s=+e.dataset.s;if(T[t][s]!==null){T[t][s]=null;drawV();return}if(pick===null){toast('Pick a guest first');return}T.forEach(r=>{const x=r.indexOf(pick);if(x>-1)r[x]=null});T[t][s]=pick;pick=null;drawV();toast('Guest seated')})}
+drawV();
+const SG=['Introduction','Researching','Discussion'];
+const PS=['Identified','Researching','Introduction','Discussion','Evaluation','Partnership'];
+const OP=[['Tokenized deposit pilot','Atlas Bank',0],['Fund tokenization intro','Northgate Asset Mgmt',1],['Custody integration','Keystone Custody',3],['Stablecoin settlement','Solace Stablecoin',2],['Permissioned network pilot','Helix Network',4],['Family office introduction','Ardent Family Office',1],['Cross-border payments','Fulcrum Payments',0]];
+function drawO(){$('#kb').innerHTML=PS.map((s,i)=>`<div class="kc"><b>${s}</b> <span class="tag">${OP.filter(o=>o[2]==i).length}</span><div style="margin-top:8px">${OP.map((o,k)=>o[2]==i?`<div class="ms" data-k="${k}"><b>${o[0]}</b><div style="font-size:11px;color:var(--mut)">${o[1]}</div></div>`:'').join('')}</div></div>`).join('');$$('#kb .ms').forEach(e=>e.onclick=()=>{const o=OP[e.dataset.k];if(o[2]<5){o[2]++;toast('Moved to '+PS[o[2]])}else toast('Already at final stage');drawO()})}drawO();
+const R={gtm:'Executive summary: TokenBridge is best placed with regional banks and asset managers piloting tokenized funds.\n\nCustomer segments: bank tokenization desks, fund administrators, family offices.\n\nPartner categories: custodians, permissioned networks, stablecoin settlement providers.\n\nMilestones: scope one bank pilot by Q3, agree success metrics, convert to contract in Q4.\n\nNext steps: request the Atlas Bank introduction, finish the custody review, host the December dinner.',din:'Dinner briefing: Institutional Digital Assets Dinner, 12 guests, 9 confirmed.\n\nSeat Atlas Bank beside Keystone Custody to open the custody pilot conversation.\n\nFollow-ups: three pending RSVPs, one introduction to request from Northgate.',def:'Based on the demo workspace, the strongest next move is the Atlas Bank pilot scoping. Readiness is 82 and the roadmap is on track.\n\nSuggested action: add a milestone for the introduction and assign an owner.'};
+function ask(q){if(!q.trim())return;const c=$('#chat');if(c.querySelector('.msg')==null)c.innerHTML='';c.insertAdjacentHTML('beforeend',`<div class="msg u"></div><div class="msg a"><span class="dots"><span></span><span></span><span></span></span></div>`);const m=c.querySelectorAll('.msg'),u=m[m.length-2],a=m[m.length-1];u.textContent=q;const CTX='You are the AI Strategy Assistant inside AEVA Nexus, a concept platform for an institutional Web3 and AI growth advisor. Use only this fictional workspace. Companies: TokenBridge (tokenization, readiness 82), StableCore (74), ChainVault (88), AI Nexus (61), Meridian Protocol (70). Ecosystem: Atlas Bank, Northgate Asset Mgmt, Keystone Custody, Solace Stablecoin, Helix Network, Ardent Family Office, Fulcrum Payments. Event: December Institutional Digital Assets Dinner, 12 guests. Structure the answer as executive summary, strategic observations, opportunity areas, challenges, next steps. Under 220 words, plain text with no markdown symbols. Advisory only, not investment, legal or compliance advice. Say the data is fictional if asked about real firms.';const hist=[];
+const t=/dinner|event|guest/i.test(q)?R.din:/gtm|roadmap|strategy|partner/i.test(q)?R.gtm:R.def,w=t.split(' ');const fb=()=>{a.textContent='';let i=0;const id=setInterval(()=>{a.textContent+=(i?' ':'')+w[i++];if(i>=w.length)clearInterval(id)},35)};$('#ci').value='';hist.push(q);(window.claude?claude.use('sample'):Promise.resolve(null)).then(s=>{if(!s){setTimeout(fb,500);return}return s(CTX+'\n\nUser questions so far, newest last:\n'+hist.join('\n')+'\n\nAnswer the newest question.',{cache:false,onText:({text})=>{a.textContent=text}})}).catch(()=>fb())}
+$('#sp').innerHTML=['Prepare an institutional GTM strategy for a tokenization platform','Prepare a private investor dinner briefing','Map strategic partners for a tokenization platform'].map(p=>`<button>${p}</button>`).join('');
+$$('#sp button').forEach(b=>b.onclick=()=>ask(b.textContent));$('#cs').onclick=()=>ask($('#ci').value);$('#ci').onkeydown=e=>{if(e.key=='Enter')ask($('#ci').value)};
+const IND=['Asset Tokenization','Stablecoin Infrastructure','Digital Asset Custody','Enterprise AI','Blockchain Infrastructure','Institutional Payments','DeFi','AI Infrastructure','Web3 Applications'];
+const CO=[['TokenBridge',IND[0],'Growth',82,'Pilot validation','Jessica','Zurich','Tokenizes private-market funds for regional banks.'],['StableCore',IND[1],'Scale-up',74,'Partner development','Priya N.','Dubai','Reserve-backed stablecoin rails for treasury teams.'],['ChainVault',IND[2],'Growth',88,'Market expansion','Jessica','Singapore','Regulated custody for digital securities.'],['AI Nexus',IND[3],'Early',61,'Target accounts','Marcus L.','London','Workflow agents for institutional operations.'],['Meridian Protocol',IND[4],'Growth',70,'Stakeholder engagement','Priya N.','Berlin','Permissioned settlement infrastructure.'],['Lumen Pay',IND[5],'Growth',66,'Institutional research','Marcus L.','New York','Cross-border payment orchestration.'],['Verity DeFi',IND[6],'Early',54,'Market positioning','Jessica','Toronto','Compliance-aware lending pools.'],['Orbit AI',IND[7],'Scale-up',72,'Pilot validation','Priya N.','Austin','GPU orchestration for enterprise models.'],['Kite Labs',IND[8],'Early',48,'Market positioning','Marcus L.','Lisbon','Consumer wallet for tokenized rewards.']];
+const lv=s=>s<40?'Early stage':s<60?'Developing':s<80?'Advancing':'Institutional preparation';let sel=0;
+function drawP(){const q=$('#pq').value.toLowerCase(),f=$('#pi').value;const rows=CO.map((c,i)=>[c,i]).filter(([c])=>(f=='All'||c[1]==f)&&c[0].toLowerCase().includes(q));
+$('#pt').innerHTML='<tr style="text-align:left;color:var(--mut)"><th style="padding:10px">Company</th><th>Industry</th><th>Stage</th><th>Readiness</th><th>GTM phase</th><th>Advisor</th></tr>'+(rows.length?rows.map(([c,i])=>`<tr class="pr" data-i="${i}" style="cursor:pointer;border-top:1px solid var(--line)"><td style="padding:10px"><b>${c[0]}</b></td><td>${c[1]}</td><td><span class="tag">${c[2]}</span></td><td style="min-width:110px"><div class="bar"><div style="width:${c[3]}%"></div></div>${c[3]}</td><td>${c[4]}</td><td>${c[5]}</td></tr>`).join(''):'<tr><td style="padding:16px;color:var(--mut)">No companies match. Clear the search or filter.</td></tr>');
+$$('.pr').forEach(r=>r.onclick=()=>{sel=+r.dataset.i;drawD('Overview')})}
+function drawD(tab){const c=CO[sel],d=$('#pd');d.style.display='block';const T={Overview:`${c[7]}<br><span class="sub">${c[1]} · HQ ${c[6]} · ${c[2]} stage</span>`,Readiness:`Score ${c[3]}, ${lv(c[3])}. ${c[3]<60?'Priority: governance and security evidence before institutional outreach.':'Priority: compliance coordination and commercial references.'}`,GTM:`Current phase: ${c[4]}. Next milestone: ${c[3]>75?'scope a bank pilot':'define the institutional buyer profile'}.`,Partners:N.slice(0,3).map(n=>`<div class="row"><span>${n[0]}</span><span class="tag">${n[1]}</span></div>`).join('')+'<span class="sub">Simulated relationships.</span>'};
+d.innerHTML=`<h3>${c[0]}</h3><div class="pill">${Object.keys(T).map(k=>`<button class="${k==tab?'on':''}" data-t="${k}">${k}</button>`).join('')}</div><div>${T[tab]}</div>`;d.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>drawD(b.dataset.t))}
+$('#pi').innerHTML='<option>All</option>'+IND.map(i=>`<option>${i}</option>`).join('');$('#an2').innerHTML=IND.map(i=>`<option>${i}</option>`).join('');
+$('#pq').oninput=drawP;$('#pi').onchange=drawP;$('#addco').onclick=()=>{$('#af').style.display='block'};
+$('#as').onclick=()=>{const n=$('#an').value.trim();if(!n)return;CO.unshift([n,$('#an2').value,'Early',50,'Market positioning','Jessica','TBD','Newly added company. Add a description.']);$('#an').value='';$('#af').style.display='none';drawP();toast(n+' added')};drawP();
+$('#rc').innerHTML=CO.map(c=>`<option>${c[0]}</option>`).join('');$('#rt').innerHTML=['Institutional Readiness Report','Company GTM Progress Report','Executive Portfolio Report'].map(r=>`<option>${r}</option>`).join('');let rmd='';
+$('#rg2').onclick=()=>{const c=CO.find(x=>x[0]==$('#rc').value),ty=$('#rt').value,nt=$('#rn').value.trim(),sc=S[c[0]],wk=sc?CAT[sc.indexOf(Math.min(...sc))]:'Compliance coordination',on=id=>$(id).checked,nx=c[3]>75?'scope a bank pilot':'define the institutional buyer profile';
+const sec=[['Executive summary',`${c[0]} (${c[1]}, ${c[2]} stage) scores ${c[3]}/100 on illustrative institutional readiness (${lv(c[3])}).`]];
+if(on('#m1'))sec.push(['Institutional readiness',`Weakest area: ${wk}. Close evidence gaps before the next bank or asset manager meeting.`]);
+if(on('#m2'))sec.push(['GTM progress',`Current phase: ${c[4]}. Next: ${nx}.`]);
+if(on('#m3'))sec.push(['Partnership development','Priority categories: custodians, permissioned networks and stablecoin settlement providers (simulated).']);
+if(nt)sec.push(['Advisor notes',nt]);sec.push(['Next steps','Confirm owners, schedule two discovery meetings and review readiness in 30 days.']);
+rmd='# '+ty+': '+c[0]+'\n\nPrepared by AEVA Strategy (concept demo, fictional data)\n\n'+sec.map(s=>'## '+s[0]+'\n'+s[1]).join('\n\n');
+$('#rv').innerHTML=`<div style="font:400 26px 'Instrument Serif',serif">${ty}</div><div class="sub">${c[0]} · prepared by AEVA Strategy · fictional demo data</div>`+sec.map(s=>`<h3 style="margin-top:14px">${s[0]}</h3><p style="margin:0;color:var(--mut)">${s[1]}</p>`).join('')+'<button class="b" id="dl" style="margin-top:16px">Download report</button>';
+$('#dl').onclick=async()=>{try{const d=await claude.use('downloads');if(!d){toast('Download unavailable here');return}await d.save({filename:c[0].replace(/\W+/g,'-')+'-report.md',data:rmd})}catch(e){toast('Download cancelled')}}};$('#rg2').click();
+const GN=['TokenBridge','Atlas Bank','Northgate Asset Mgmt','Keystone Custody','Solace Stablecoin','Helix Network','Ardent Family Office','Fulcrum Payments','Meridian Protocol'];
+const GE=[[0,6,3],[0,3,2],[0,5,1],[6,2,3],[6,1,2],[3,1,3],[3,7,2],[5,4,2],[4,7,2],[2,1,1],[8,5,3],[8,0,1]],WL=['','weak','good','strong'];
+function pfind(t){const d=Array(9).fill(99),pv=Array(9).fill(-1);d[0]=0;for(let r=0;r<9;r++)GE.forEach(([a,b,w])=>{const c=4-w;if(d[a]+c<d[b]){d[b]=d[a]+c;pv[b]=a}if(d[b]+c<d[a]){d[a]=d[b]+c;pv[a]=b}});const p=[];for(let x=t;x!=-1;x=pv[x])p.unshift(x);return p}
+$('#fp').innerHTML=GN.slice(1).map((n,i)=>`<option value="${i+1}">${n}</option>`).join('');
+$('#fb').onclick=()=>{const t=+$('#fp').value,p=pfind(t),ws=p.slice(1).map((x,i)=>GE.find(e=>(e[0]==p[i]&&e[1]==x)||(e[1]==p[i]&&e[0]==x))[2]),avg=(ws.reduce((a,b)=>a+b,0)/ws.length).toFixed(1),via=GN[p[p.length-2]],tg=GN[t];
+$('#fo').innerHTML='<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center">'+p.map((x,i)=>`<span class="tag">${GN[x]}</span>${i<p.length-1?'<span class="sub" style="margin:0">→ '+WL[ws[i]]+'</span>':''}`).join('')+'</div><p style="margin:10px 0 6px"><b>'+(p.length==2?'Direct connection.':(p.length-1)+' hops, average warmth '+avg+' of 3.')+'</b> Simulated relationships.</p><div class="msg a" style="max-width:100%">Draft to '+via+': "Could you introduce TokenBridge to '+tg+'? We are scoping an institutional pilot and your relationship looks like the right door."</div><button class="b" id="fa" style="margin-top:8px">Add to pipeline</button>';
+$('#fa').onclick=()=>{OP.push(['Intro to '+tg+' via '+via,tg,0]);drawO();toast('Added to Opportunity Pipeline')}};$('#fb').click();
+const PI=()=>[...$$('nav button[data-s]')].map(b=>({t:b.textContent,go:()=>b.click()})).concat(CO.map((c,i)=>({t:c[0]+' · company',go:()=>{$('nav button[data-s="pf"]').click();sel=i;drawD('Overview')}})));
+const pal=$('#pal');function pList(){const q=$('#pq2').value.toLowerCase(),it=PI().filter(x=>x.t.toLowerCase().includes(q)).slice(0,8);$('#pl').innerHTML=it.length?it.map(x=>`<div class="row pi" style="cursor:pointer;padding:9px 6px">${x.t}</div>`).join(''):'<div class="sub" style="padding:10px">Nothing found. Try a module or company name.</div>';$$('#pl .pi').forEach((e,i)=>e.onclick=()=>{pal.style.display='none';it[i].go()});return it}
+function pOpen(){pal.style.display='flex';$('#pq2').value='';pList();$('#pq2').focus()}
+$('#pq2').oninput=pList;$('#pq2').onkeydown=e=>{if(e.key=='Enter'){const it=pList();if(it[0]){pal.style.display='none';it[0].go()}}if(e.key=='Escape')pal.style.display='none'};pal.onclick=e=>{if(e.target==pal)pal.style.display='none'};
+document.onkeydown=e=>{if((e.metaKey||e.ctrlKey)&&e.key=='k'){e.preventDefault();pOpen()}};
+const TS=[['ov','Overview','See every company, opportunity and event at a glance. All numbers are fictional.'],['rd','Readiness','Tap any category to raise its score and watch the ring update.'],['gtm','GTM roadmap','Tap a milestone to mark it complete.'],['eco','Ecosystem','Tap a node, then try the warm introduction finder below the map.'],['ev','Dinners','Pick a guest, then tap a seat to place them.'],['ai','AI assistant','Ask Claude for a GTM plan or a dinner briefing.'],['rp','Reports','Generate a client report and download it.']];
+function tour(i){const b=$('#tour');if(i<0||i>=TS.length){b.style.display='none';return}$('nav button[data-s="'+TS[i][0]+'"]').click();b.style.display='block';b.innerHTML=`<b>${i+1} of ${TS.length} · ${TS[i][1]}</b><p style="margin:4px 0 10px">${TS[i][2]}</p><button class="g" id="t0">Back</button> <button class="b" id="t1">${i==TS.length-1?'Finish':'Next'}</button> <button class="g" id="t2">Skip</button>`;$('#t0').onclick=()=>tour(i-1);$('#t1').onclick=()=>tour(i+1);$('#t2').onclick=()=>tour(-1)}
+$('nav').insertAdjacentHTML('beforeend','<button id="ps">Search · Ctrl K</button><button id="tr">Take the tour</button>');$('#ps').onclick=pOpen;$('#tr').onclick=()=>tour(0);
+try{if(!localStorage.getItem('nx')&&!location.hash){localStorage.setItem('nx','1');setTimeout(()=>tour(0),900)}}catch(e){}
+const nv=$('nav'),bm={};$$('nav button[data-s]').forEach(b=>bm[b.dataset.s]=b);
+const GR=[['Workspace',['ov','pf']],['Advise',['rd','gtm','eco']],['Engage',['ev','op']],['Insights',['ai','rp']]],IC={ov:'◫',pf:'▤',rd:'◔',gtm:'⇢',eco:'⌬',ev:'◌',op:'▥',ai:'✦',rp:'▧'},ids=GR.flatMap(g=>g[1]),LB={},GN2={};
+const fr=document.createDocumentFragment();GR.forEach(([t,l])=>{const d=document.createElement('div');d.className='grp';d.textContent=t;fr.append(d);l.forEach(i=>{LB[i]=bm[i].textContent;GN2[i]=t;fr.append(bm[i])})});nv.querySelector('small').after(fr);
+ids.forEach((i,n)=>{const b=bm[i];b.innerHTML=`<span style="width:22px;opacity:.85">${IC[i]}</span><span style="flex:1">${LB[i]}</span><span style="opacity:.4;font-size:11px">${n+1}</span>`;b.title=LB[i]+' (press '+(n+1)+')';b.addEventListener('click',()=>{$('#crumb').textContent=GN2[i]+' / '+LB[i];window.scrollTo(0,0)})});$('#crumb').textContent='Workspace / '+LB.ov;
+document.addEventListener('keydown',e=>{if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||e.metaKey||e.ctrlKey)return;const n=+e.key;if(n>=1&&n<=9)bm[ids[n-1]].click()});
+const QA=[['Add company',()=>{bm.pf.click();$('#af').style.display='block';$('#an').focus()}],['Check readiness',()=>bm.rd.click()],['Update roadmap',()=>bm.gtm.click()],['Find an introduction',()=>bm.eco.click()],['Plan a dinner',()=>bm.ev.click()],['Ask AI',()=>{bm.ai.click();$('#ci').focus()}],['Create report',()=>bm.rp.click()]];
+$('#qa').innerHTML='<span class="sub" style="margin:0 6px 0 0">Quick actions</span>'+QA.map((q,i)=>`<button class="g" data-q="${i}">${q[0]}</button>`).join('');$$('#qa [data-q]').forEach(b=>b.onclick=QA[b.dataset.q][1]);
+$('#bs').onclick=pOpen;$('#bt').onclick=()=>{const r=document.documentElement,cur=r.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');r.dataset.theme=cur=='dark'?'light':'dark'};
+const H=location.hash.slice(1);if(H){const b=document.querySelector('nav button[data-s="'+H+'"]');if(b)b.click()}
+</script></body></html>
